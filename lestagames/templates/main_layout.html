@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{{ url_for('static', filename='style/style.css')}}" rel="stylesheet" />
+    {% block title %}
+        <title>{{_('File collection statistic')}}</title>
+    {% endblock %}
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1>
+                {{_('File collection statistic')}}
+            </h1>
+        </header>
+        <nav class="nav">
+            {% block navigation %}
+                <a href="#">{{_('home')}}</a>
+                <a href="#">{{_('collection')}}</a>
+                <a href="#">{{_('files')}}</a>
+            {% endblock %}
+        </nav>
+        <main class="main">
+            {% block main_content %}{% endblock %}
+        </main>
+        <footer class="footer">Footer</footer>
+    </div>
+</body>
+</html>
