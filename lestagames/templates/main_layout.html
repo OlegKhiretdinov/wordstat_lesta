@@ -16,7 +16,7 @@
         </header>
         <nav class="nav">
             {% block navigation %}
-                <a href="#">{{_('home')}}</a>
+                <a href="{{url_for('home_page')}}">{{_('home')}}</a>
                 <a href="#">{{_('collection')}}</a>
                 <a href="#">{{_('files')}}</a>
             {% endblock %}

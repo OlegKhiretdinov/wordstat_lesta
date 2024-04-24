@@ -7,7 +7,31 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: auto;
     max-width: 1200px;
     min-height: 100vh;
     align-items: center;
+}
+
+.main {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* main page */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label.required-fields:after {
+    content: "*";
+    padding-left: 5px;
+    color: red
+}
+
+/* Footer */
+.footer {
+    padding:10px;
 }

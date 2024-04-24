@@ -1,0 +1,11 @@
+{% extends "main_layout.html" %}
+
+{% block main_content %}
+    <form enctype="multipart/form-data" action="{{url_for('add_collection')}}" method="post">
+        <label class="required-fields" for="files">{{_('select one or more files')}}</label>
+        <input type="file" id="files" name="files" multiple required accept=".txt">
+        <label for="collection-name">{{_('collection name')}}</label>
+        <input type="text" id="collection-name" name="collection-name">
+        <button type="submit">{{_('submit')}}</button>
+    </form>
+{% endblock %}
