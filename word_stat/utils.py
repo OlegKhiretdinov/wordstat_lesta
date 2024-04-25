@@ -1,6 +1,6 @@
-from collections import defaultdict
-import string
 import math
+import string
+from collections import defaultdict
 
 import nltk
 from nltk.tokenize import word_tokenize
@@ -17,37 +17,44 @@ def allowed_file(filename):
 
 def parse_txt_collection(files):
     files_stat = []
-    errors = []
 
     for file in files:
         words = defaultdict(int)
 
         if allowed_file(file.filename):
-            for line in file.readlines():
-                try:
+            try:
+                for line in file.readlines():
                     for word in word_tokenize(line.decode().lower()):
                         if word not in punctuation:
                             words[word] += 1
-                except UnicodeDecodeError:
-                    errors.append({"file": file.filename, "message": 'unsupported_encoding'})
+                files_stat.append({"name": file.filename, "status": "parsed", "words": words})
+            except UnicodeDecodeError:
+                files_stat.append({"name": file.filename, "status": 'unsupported_encoding'})
 
         else:
-            errors.append({"file": file.filename, "message": 'unsupported_format'})
+            files_stat.append({"name": file.filename, "status": 'unsupported_format'})
 
-        files_stat.append({"name": file.filename, "words": words})
         file.close()
 
-    return files_stat, errors
+    return files_stat
 
 
 def calculate_tf_idf(collection):
+    """
+    Изменяет коллекцию. Добавляет к словам значения tf, idf
+    :param collection:
+    :return: None
+    """
     for file in collection:
+        if "words" not in file:
+            continue
+        print(file)
         words_count = sum(file['words'].values())
         words = file['words']
         for word in words:
             idf_c = 0
             for item in collection:
-                if word in item['words']:
+                if "words" in item and word in item['words']:
                     idf_c += 1
 
             words[word] = {
