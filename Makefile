@@ -6,3 +6,12 @@ start:
 
 lint:
 	poetry run flake8 word_stat
+
+add_pot:
+	pybabel extract -F babel.cfg -o messages.pot ./word_stat/
+
+update_translation:
+	pybabel update -i messages.pot -d ./word_stat/translations
+
+translate:
+	pybabel compile -d ./word_stat/translations

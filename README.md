@@ -39,12 +39,19 @@ alembic upgrade head
 ```
 
 ## Обновление локализации
+[doc](https://python-babel.github.io/flask-babel/#translating-applications)
+
  В папке с приложением:
- * обновить messages.pot
+ * создать новый messages.pot
 ```commandline
- pybabel extract -F babel.cfg -o messages.pot .
+ make add_pot
 ```
+* обновить фаилы локализаций
+```commandline
+make update_translation
+```
+* отредактировать фаилы локализаций .po
 * Обновить локализацию
 ```commandline
-pybabel update -i messages.pot -d translations
+make translate
 ```

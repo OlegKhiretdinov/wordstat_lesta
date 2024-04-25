@@ -12,7 +12,7 @@ from .utils import parse_txt_collection, calculate_tf_idf
 app = Flask(__name__)
 load_dotenv()
 
-app.config['BABEL_LANGUAGES'] = ['ru', 'en']
+app.config['BABEL_LANGUAGES'] = ['ru']
 app.config['BABEL_DEFAULT_LOCALE'] = 'ru'
 
 babel = Babel(app)
