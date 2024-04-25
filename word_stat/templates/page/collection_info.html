@@ -1,0 +1,32 @@
+{% extends "main_layout.html" %}
+
+{% block header %}
+    <h1>
+        {{_('Collection')}} {{collection.id}} {{collection.name}}
+    </h1>
+{% endblock %}
+
+{% block main_content %}
+<table>
+    <thead>
+        <tr>
+            <th>{{_('name')}}</th>
+            <th>{{_('tf')}}</th>
+            <th>{{_('idf')}}</th>
+            <th>{{_('count')}}</th>
+            <th>{{_('file')}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for item in words%}
+        <tr>
+            <td>{{item.word}}</td>
+            <td>{{item.tf}}</td>
+            <td>{{item.idf}}</td>
+            <td>{{item.count}}</td>
+            <td>{{item.name}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{% endblock %}

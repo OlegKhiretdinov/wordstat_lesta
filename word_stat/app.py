@@ -55,12 +55,41 @@ def add_collection():
 
 @app.get('/collection/')
 def collections_list():
+    limit = int(request.values.get("limit", 10))
+    page = int(request.values.get("page", 1))
+
     with Session(engine) as session:
-        stmt = select(FileCollection).all
-        collections = session.execute(stmt)
-    return render_template('page/collections_list', collections=collections)
+        query = select(
+            FileCollection.id,
+            FileCollection.name,
+            FileCollection.created_at
+        ).limit(limit).offset(limit * (page - 1))
+        collections = session.execute(query).all()
+
+    return render_template('page/collections_list.html', collections=collections)
 
 
 @app.get('/collection/<int:collection_id>/')
 def collection_info(collection_id):
-    return f'collection id {collection_id}'
+    limit = int(request.values.get("limit", 50))
+    page = int(request.values.get("page", 1))
+
+    with Session(engine) as session:
+        query = select(
+            Word.word,
+            Word.count,
+            Word.tf,
+            Word.idf,
+            File.name).\
+            join(File).\
+            where(File.collection_id == collection_id).\
+            limit(limit).offset(limit * (page - 1)).order_by(Word.idf.desc())
+
+        words = session.execute(query).all()
+
+        coll_query = select(FileCollection.id, FileCollection.name, FileCollection.created_at).\
+            where(FileCollection.id == collection_id)
+
+        collection = session.execute(coll_query).fetchone()
+
+    return render_template('page/collection_info.html', words=words, collection=collection)

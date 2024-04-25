@@ -1,0 +1,28 @@
+{% extends "main_layout.html" %}
+
+{% block header %}
+    <h1>
+        {{_('Collection list')}}
+    </h1>
+{% endblock %}
+
+{% block main_content %}
+<table>
+    <thead>
+        <tr>
+            <th>{{_('name')}}</th>
+            <th>{{_('created_at')}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for item in collections%}
+        <tr>
+            <td>
+                <a href="{{url_for('collections_list')}}/{{item.id}}">{{_('collection')}} {{item.id}} {{item.name}}</a>
+            </td>
+            <td>{{item.created_at.strftime("%Y-%m-%d %H:%M")}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{% endblock %}

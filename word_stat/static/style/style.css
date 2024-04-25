@@ -1,6 +1,7 @@
 body {
     padding: 0;
     margin: 0;
+    font-family: Sans-serif;
 }
 
 .wrapper {
@@ -16,6 +17,35 @@ body {
 .main {
     flex-grow: 1;
     padding: 20px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+tbody tr:hover {
+    background: #ddd;
+}
+
+/* Navigation */
+
+.nav a {
+    display: inline-block;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.nav a:hover,
+.nav a:active,
+.nav a:visited {
+    color: #3838e1;
 }
 
 /* main page */

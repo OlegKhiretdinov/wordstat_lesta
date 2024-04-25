@@ -10,15 +10,16 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <h1>
-                {{_('File collection statistic')}}
-            </h1>
+            {% block header %}
+                <h1>
+                    {{_('File collection statistic')}}
+                </h1>
+            {% endblock %}
         </header>
         <nav class="nav">
             {% block navigation %}
                 <a href="{{url_for('home_page')}}">{{_('home')}}</a>
-                <a href="#">{{_('collection')}}</a>
-                <a href="#">{{_('files')}}</a>
+                <a href="{{url_for('collections_list')}}">{{_('collections')}}</a>
             {% endblock %}
         </nav>
         <main class="main">
