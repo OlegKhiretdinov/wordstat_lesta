@@ -7,12 +7,25 @@
 * PostgreSQL 16
 
 ## Развёртывание
+* Указать необходимые переменные окружения в .env(список в файле .env_EXAMPLE).
+* Установить зависимости
+```commandline
+poetry install
+```
+* Создать таблицы в бд.
+```commandline
+alembic upgrade head
+```
 
-
-
-Список необходимых переменных в файле .env_EXAMPLE
-
-Для работы с базами данных используются библиотеки SQLAlchemy и Alembic
+## Запуск
+### Для разработки
+```commandline
+make dev
+```
+### Продакшн
+```commandline
+make start
+```
 
 ## Миграции
 В корне проекта выполнить
