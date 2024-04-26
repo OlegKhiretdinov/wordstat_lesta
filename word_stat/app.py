@@ -62,13 +62,16 @@ def collections_list():
         item_count = session.execute(select(func.count(FileCollection.id))).scalar()
         paginator = get_paginator_obj(limit, page, item_count)
 
-        query = select(
-            FileCollection.id,
-            FileCollection.name,
-            FileCollection.created_at
-        ).limit(paginator['limit']).offset(paginator['limit'] * (paginator['current_page'] - 1))
+        if item_count > 0:
+            query = select(
+                FileCollection.id,
+                FileCollection.name,
+                FileCollection.created_at
+            ).limit(paginator['limit']).offset(paginator['limit'] * (paginator['current_page'] - 1))
 
-        collections = session.execute(query)
+            collections = session.execute(query)
+        else:
+            collections = []
 
     return render_template(
         'page/collections_list.html',
@@ -87,13 +90,16 @@ def collection_info(collection_id):
         item_count = session.execute(count_query).scalar()
         paginator = get_paginator_obj(limit, page, item_count)
 
-        words_query = select(Word.word, Word.count, Word.tf, Word.idf, File.name).\
-            join(File).where(File.collection_id == collection_id) \
-            .order_by(Word.idf.desc()) \
-            .limit(paginator['limit'])\
-            .offset(paginator['limit'] * (paginator['current_page'] - 1))
+        if item_count > 0:
+            words_query = select(Word.word, Word.count, Word.tf, Word.idf, File.name).\
+                join(File).where(File.collection_id == collection_id) \
+                .order_by(Word.idf.desc()) \
+                .limit(paginator['limit'])\
+                .offset(paginator['limit'] * (paginator['current_page'] - 1))
 
-        words = session.execute(words_query).all()
+            words = session.execute(words_query).all()
+        else:
+            words = []
 
         coll_query = select(FileCollection.id, FileCollection.name, FileCollection.created_at).\
             where(FileCollection.id == collection_id)
