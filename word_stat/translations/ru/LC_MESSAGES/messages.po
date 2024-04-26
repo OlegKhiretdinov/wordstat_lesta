@@ -51,7 +51,7 @@ msgstr "idf"
 
 #: word_stat/templates/page/collection_info.html:16
 msgid "count"
-msgstr "колличество"
+msgstr "количество"
 
 #: word_stat/templates/page/collection_info.html:17
 msgid "file"

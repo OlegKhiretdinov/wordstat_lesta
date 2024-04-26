@@ -61,6 +61,27 @@ label.required-fields:after {
     color: red
 }
 
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
+}
+
+.pagination a,
+.pagination .current {
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.pagination a:hover,
+.pagination a:active,
+.pagination a:visited {
+    color: #3838e1;
+}
+
 /* Footer */
 .footer {
     padding:10px;

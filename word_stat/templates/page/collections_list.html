@@ -2,7 +2,7 @@
 
 {% block header %}
     <h1>
-        {{_('Collection list')}}
+        {{_('Collection list')}} {{count}}
     </h1>
 {% endblock %}
 
@@ -25,4 +25,5 @@
         {%endfor%}
     </tbody>
 </table>
+{% include 'pagination.html' %}
 {% endblock %}
