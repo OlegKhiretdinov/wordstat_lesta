@@ -12,6 +12,7 @@
 ```commandline
 poetry install
 ```
+* активировать виртуальное окружение
 * Создать таблицы в бд.
 ```commandline
 alembic upgrade head
